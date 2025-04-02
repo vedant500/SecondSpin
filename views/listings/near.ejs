@@ -1,0 +1,59 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Find Listings Near You</h2>
+
+    <form id="collegeForm" method="GET" action="/listings/near">
+        <label for="collegeSelect" class="form-label">Select Your College:</label>
+        <select id="collegeSelect" name="college" class="form-select" required>
+            <option value="" selected disabled>-- Select College --</option>
+                  <option value="AISSMS College of Engineering">AISSMS College of Engineering</option>
+                  <option value="Alard College of Engineering & Management">Alard College of Engineering & Management</option>
+                  <option value="Anantrao Pawar College of Engineering & Research">Anantrao Pawar College of Engineering & Research</option>
+                  <option value="Bharati Vidyapeeth College of Engineering">Bharati Vidyapeeth College of Engineering</option>
+                  <option value="Cummins College of Engineering for Women">Cummins College of Engineering for Women</option>
+                  <option value="D. Y. Patil College of Engineering, Akurdi">D. Y. Patil College of Engineering, Akurdi</option>
+                  <option value="Dr. D. Y. Patil Institute of Technology, Pimpri">Dr. D. Y. Patil Institute of Technology, Pimpri</option>
+                  <option value="Genba Sopanrao Moze College of Engineering">Genba Sopanrao Moze College of Engineering</option>
+                  <option value="Indira College of Engineering and Management">Indira College of Engineering and Management</option>
+                  <option value="JSPM Rajarshi Shahu College of Engineering">JSPM Rajarshi Shahu College of Engineering</option>
+                  <option value="JSPM Narhe Technical Campus">JSPM Narhe Technical Campus</option>
+                  <option value="Jayawantrao Sawant College of Engineering">Jayawantrao Sawant College of Engineering</option>
+                  <option value="MIT Academy of Engineering, Alandi">MIT Academy of Engineering, Alandi</option>
+                  <option value="MIT College of Engineering, Kothrud">MIT College of Engineering, Kothrud</option>
+                  <option value="NBN Sinhgad School of Engineering">NBN Sinhgad School of Engineering</option>
+                  <option value="Nutan Maharashtra Institute of Engineering & Technology">Nutan Maharashtra Institute of Engineering & Technology</option>
+                  <option value="PCCOE (Pimpri Chinchwad College of Engineering)">PCCOE (Pimpri Chinchwad College of Engineering)</option>
+                  <option value="PES Modern College of Engineering">PES Modern College of Engineering</option>
+                  <option value="PVPIT (Padmabhooshan Vasantdada Patil Institute of Technology)">PVPIT (Padmabhooshan Vasantdada Patil Institute of Technology)</option>
+                  <option value="RMD Sinhgad School of Engineering">RMD Sinhgad School of Engineering</option>
+                  <option value="Rajarambapu Institute of Technology">Rajarambapu Institute of Technology</option>
+                  <option value="SCTR's Pune Institute of Computer Technology (PICT)">SCTR's Pune Institute of Computer Technology (PICT)</option>
+                  <option value="Shri Sant Gajanan Maharaj College of Engineering">Shri Sant Gajanan Maharaj College of Engineering</option>
+                  <option value="Sinhgad Academy of Engineering">Sinhgad Academy of Engineering</option>
+                  <option value="Sinhgad College of Engineering">Sinhgad College of Engineering</option>
+                  <option value="Sinhgad Institute of Technology, Lonavala">Sinhgad Institute of Technology, Lonavala</option>
+                  <option value="SKN College of Engineering">SKN College of Engineering</option>
+                  <option value="SVPM College of Engineering">SVPM College of Engineering</option>
+                  <option value="Trinity College of Engineering & Research">Trinity College of Engineering & Research</option>
+                  <option value="TSSM's Bhivarabai Sawant College of Engineering">TSSM's Bhivarabai Sawant College of Engineering</option>
+                  <option value="Vishwakarma Institute of Information Technology (VIIT)">Vishwakarma Institute of Information Technology (VIIT)</option>
+                  <option value="VIT Pune (Vishwakarma Institute of Technology)">VIT Pune (Vishwakarma Institute of Technology)</option>
+                  <option value="Zeal College of Engineering and Research">Zeal College of Engineering and Research</option>
+                  <option value="Other">Other</option>
+        </select>
+        <div class="d-grid mt-3">
+            <button type="submit" class="btn btn-primary">Find Listings</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.getElementById("collegeForm").addEventListener("submit", function (event) {
+        const selectedCollege = document.getElementById("collegeSelect").value;
+        if (!selectedCollege) {
+            alert("Please select a college.");
+            event.preventDefault(); // Prevent form submission
+            return;
+        }
+        this.action = `/listings/near/${encodeURIComponent(selectedCollege)}`;
+    });
+</script>

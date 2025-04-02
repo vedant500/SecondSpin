@@ -1,0 +1,59 @@
+<body>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card shadow-lg p-4">
+          <div class="card-body">
+            <h3 class="text-center mb-4">Edit Your Listing</h3>
+            <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
+              <div class="mb-3">
+                <label class="form-label">Title</label>
+                <input name="listing[title]" value="<%= listing.title %>" type="text" class="form-control" required/>
+                <div class="invalid-feedback">please enter valid Title!</div>       
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Description</label>
+                <textarea name="listing[description]" class="form-control" required><%= listing.description %></textarea>
+                <div class="invalid-feedback">Please add small Description!</div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Image URL</label>
+                <input name="listing[image]" type="file" class="form-control" />
+                <div class="invalid-feedback">Please valid image file!</div>
+
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Price</label>
+                <input name="listing[price]" value="<%= listing.price %>" type="number" class="form-control" required max="1500"/>
+                <div class="invalid-feedback">Please enter valid price!</div>
+
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">College</label>
+                <input name="listing[collage]" value="<%= listing.collage %>" type="text" class="form-control" required/>
+                <div class="invalid-feedback">Please select your collage!</div>
+
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Contact</label>
+                <input name="listing[contact]" value="<%= listing.contact %>" type="tel" pattern="[6-9]{1}[0-9]{9}" class="form-control" required/>
+                <div class="invalid-feedback">Please aenter valid contact number!</div>
+
+              </div>
+
+              <div class="d-grid">
+                <button class="btn btn-success">Update Listing</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<br><br>

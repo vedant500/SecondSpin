@@ -1,0 +1,266 @@
+can you do that for mehtml,body{ 
+    font-family: "Plus Jakarta Sans", serif !important;
+    margin: 0;
+    padding: 0;
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100vh !important;
+    background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(1,159,200,1) 54%, rgba(0,212,255,1) 100%);
+}   
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures full height */
+}
+
+.container {
+    flex-grow: 1;  /* Pushes footer down */
+}
+
+main {
+    flex-grow: 1;
+}
+
+/* Navbar */
+.navbar{
+    height: 5rem;
+    background-color:white ;
+}
+
+.fa-compass{
+    color: #fe424d;
+    font-size: 2rem;
+}
+
+.nav-link{
+    color: #222222 !important;
+}
+
+/* Footer */
+
+.f-info-links a{
+    text-decoration: none;
+    color: #222222;
+    
+}
+
+.f-info-links a:hover{
+    text-decoration: underline;
+    color: #222222;
+}
+
+.f-info {
+    width: 100%;
+    text-align: center;
+    height: 8rem;
+    background-color: #ebebeb;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto; /* Pushes footer to bottom */
+}
+
+.f-info-socials i{
+    margin-right: 1rem;
+    font-size: 1.2rem;
+}
+
+
+.f-info-links,.f-info-socials,.f-info-brand{
+    width: 100% ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+main {
+    flex: 1;
+}
+
+/* cards */
+
+.listing-card{
+    border: none!important;
+    margin-bottom: 2rem;
+}
+
+.card-img-top{
+    border-radius: 1rem!important;
+    width: 100%!important;
+    object-fit: cover !important;
+}
+
+.card-body{
+    padding: 0!important;
+  
+    
+}
+
+.card-text p{
+    font-weight: 400 !important;
+}
+.listing-link{
+    text-decoration: none;
+}
+/* 
+card effect */
+.card-img-overlay{
+    opacity: 0;
+}
+
+.card-img-overlay:hover{
+    opacity: 0.2;
+    background-color: white;
+}
+
+/* NEW page */
+.add-btn{
+    background-color: #fe424d !important;
+    border: none !important;
+}
+
+/* Show route */
+.r{
+    display: flex !important;
+}
+
+.show-card{
+    padding-left: 0;
+    padding-right: 0;
+
+}
+#map {
+    height: 400px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* responsiveness */
+
+
+
+/* Default Card Size (Large Screens - Desktops) */
+.listing-card {
+    width: 100%;
+    max-width: 22rem; /* Wider on large screens */
+    height: 30rem; /* Taller for large screens */
+    margin: auto;
+}
+
+/* Fixed Image Size */
+.listing-card img {
+    width: 100%;
+    height: 14rem; /* Fixed height to prevent distortion */
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* 🔥 Medium Screens (Tablets) */
+@media (max-width: 992px) {
+    .listing-card {
+        max-width: 20rem;
+        height: 28rem; /* Slightly shorter */
+    }
+}
+
+/* 🔥 Small Screens (Mobile) */
+@media (max-width: 576px) { 
+    .col-6 { /* Force 2 cards per row */
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    .listing-card {
+        max-width: 16rem; /* Shrink width */
+        height: 24rem; /* Decrease height proportionally */
+    }
+}
+
+/* 🔥 Extra Small Screens (Super Small Phones) */
+@media (max-width: 400px) { 
+    .listing-card {
+        max-width: 14rem;
+        height: 22rem; /* Shrink more for tiny screens */
+    }
+}
+
+/* Show page */
+.review-section {
+    margin-top: 20px;
+  }
+  
+  .review-card {
+    border: none;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 8px;
+  }
+  
+  .reply-card {
+    margin-left: 40px;
+    border-left: 2px solid #ddd;
+    padding-left: 10px;
+  }
+  
+  .comment-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .comment-box textarea {
+    width: 100%;
+    border-radius: 6px;
+  }
+  
+  .comment-box button {
+    white-space: nowrap;
+  }
+  
+
+
+/* Listing Cards */
+.listing-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background-color: #ffffff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.listing-card:hover {
+    transform: translateY(-5px); /* Slight lift effect on hover */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+}
+
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: #ddd; /* Placeholder for images */
+}
+
+.card-title {
+    font-size: 1.1rem;
+    color: #007bff; /* Highlight title color */
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #333;
+}
+
+
+
+
+
+
+.index{
+    background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(1,159,200,1) 54%, rgba(0,212,255,1) 100%);
+}

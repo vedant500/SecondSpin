@@ -1,0 +1,92 @@
+<body>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card shadow-lg p-4">
+          <div class="card-body">
+            <h3 class="text-center mb-4">Add Your Item</h3>
+            <form method="POST" action="/listings" novalidate class="needs-validation" enctype="multipart/form-data">
+              <div class="mb-3">
+                <label class="form-label">Title</label>
+                <input name="listing[title]" type="text" class="form-control" placeholder="Enter title" required maxlength="10" />
+                <div class="valid-feedback">Title is looking good!</div>
+                <div class="invalid-feedback">Enter a valid title!</div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Description</label>
+                <textarea name="listing[description]" class="form-control" placeholder="Enter description" required></textarea>
+                <div class="invalid-feedback">Please add a small description</div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Image URL</label>
+                <input name="listing[image]" type="file" class="form-control" placeholder="Enter image " required />
+                <div class="valid-feedback">Image file is looking good!</div>
+                <div class="invalid-feedback">Please insert an image of your product</div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Price</label>
+                <input name="listing[price]" type="number" class="form-control" placeholder="Enter price" required max="1500"/>
+                <div class="invalid-feedback">Enter a valid price!</div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Contact</label>
+                <input name="listing[contact]" type="tel" class="form-control" placeholder="Enter contact" pattern="[6-9]{1}[0-9]{9}" required />
+                <div class="invalid-feedback">Please enter a correct contact number!</div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">College</label>
+                <select name="listing[collage]" class="form-select" required>
+                  <option value="" selected disabled>-- Select College --</option>
+                  <option value="AISSMS College of Engineering">AISSMS College of Engineering</option>
+                  <option value="Alard College of Engineering & Management">Alard College of Engineering & Management</option>
+                  <option value="Anantrao Pawar College of Engineering & Research">Anantrao Pawar College of Engineering & Research</option>
+                  <option value="Bharati Vidyapeeth College of Engineering">Bharati Vidyapeeth College of Engineering</option>
+                  <option value="Cummins College of Engineering for Women">Cummins College of Engineering for Women</option>
+                  <option value="D. Y. Patil College of Engineering, Akurdi">D. Y. Patil College of Engineering, Akurdi</option>
+                  <option value="Dr. D. Y. Patil Institute of Technology, Pimpri">Dr. D. Y. Patil Institute of Technology, Pimpri</option>
+                  <option value="Genba Sopanrao Moze College of Engineering">Genba Sopanrao Moze College of Engineering</option>
+                  <option value="Indira College of Engineering and Management">Indira College of Engineering and Management</option>
+                  <option value="JSPM Rajarshi Shahu College of Engineering">JSPM Rajarshi Shahu College of Engineering</option>
+                  <option value="JSPM Narhe Technical Campus">JSPM Narhe Technical Campus</option>
+                  <option value="Jayawantrao Sawant College of Engineering">Jayawantrao Sawant College of Engineering</option>
+                  <option value="MIT Academy of Engineering, Alandi">MIT Academy of Engineering, Alandi</option>
+                  <option value="MIT College of Engineering, Kothrud">MIT College of Engineering, Kothrud</option>
+                  <option value="NBN Sinhgad School of Engineering">NBN Sinhgad School of Engineering</option>
+                  <option value="Nutan Maharashtra Institute of Engineering & Technology">Nutan Maharashtra Institute of Engineering & Technology</option>
+                  <option value="PCCOE (Pimpri Chinchwad College of Engineering)">PCCOE (Pimpri Chinchwad College of Engineering)</option>
+                  <option value="PES Modern College of Engineering">PES Modern College of Engineering</option>
+                  <option value="PVPIT (Padmabhooshan Vasantdada Patil Institute of Technology)">PVPIT (Padmabhooshan Vasantdada Patil Institute of Technology)</option>
+                  <option value="RMD Sinhgad School of Engineering">RMD Sinhgad School of Engineering</option>
+                  <option value="Rajarambapu Institute of Technology">Rajarambapu Institute of Technology</option>
+                  <option value="SCTR's Pune Institute of Computer Technology (PICT)">SCTR's Pune Institute of Computer Technology (PICT)</option>
+                  <option value="Shri Sant Gajanan Maharaj College of Engineering">Shri Sant Gajanan Maharaj College of Engineering</option>
+                  <option value="Sinhgad Academy of Engineering">Sinhgad Academy of Engineering</option>
+                  <option value="Sinhgad College of Engineering">Sinhgad College of Engineering</option>
+                  <option value="Sinhgad Institute of Technology, Lonavala">Sinhgad Institute of Technology, Lonavala</option>
+                  <option value="SKN College of Engineering">SKN College of Engineering</option>
+                  <option value="SVPM College of Engineering">SVPM College of Engineering</option>
+                  <option value="Trinity College of Engineering & Research">Trinity College of Engineering & Research</option>
+                  <option value="TSSM's Bhivarabai Sawant College of Engineering">TSSM's Bhivarabai Sawant College of Engineering</option>
+                  <option value="Vishwakarma Institute of Information Technology (VIIT)">Vishwakarma Institute of Information Technology (VIIT)</option>
+                  <option value="VIT Pune (Vishwakarma Institute of Technology)">VIT Pune (Vishwakarma Institute of Technology)</option>
+                  <option value="Zeal College of Engineering and Research">Zeal College of Engineering and Research</option>
+                  <option value="Other">Other</option>
+                </select>
+                <div class="invalid-feedback">Please select your college!</div>
+              </div>
+
+              <div class="d-grid">
+                <button class="btn btn-primary">Add Item</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

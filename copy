@@ -1,0 +1,502 @@
+row-cols-lg-3 row-cols-md-2  row-cols-sm-1
+
+
+<div class="row  row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 " >
+    <% for (let listing of allListings) {%>
+        <a href="/listings/<%= listing._id %>" class="listing-link">
+            <div class="card col listing-card  " >
+                <img class="card-img-top" src="<%= listing.image%>" alt="listing image" style="height:20rem;">
+                <div class="card-img-overlay"></div>
+                <div class="card-body">
+                  <p class="card-text">
+                    <b><%= listing.title %></b>
+                    <br>
+                    
+
+                    &#8377;<%= Number(listing.price).toLocaleString("en-IN") %>
+                </p>
+                </div>
+              </div>
+        </a>
+       
+          <% }%>
+</div> 
+
+
+
+
+<!-- Edit.ejs -->
+
+
+
+<body>
+  <h3>Edit your Listing</h3>
+  <form method="POST" action="/listings/<%= listing._id %>?_method=PUT">
+    <input name="listing[title]" value="<%= listing.title %>" type="text" />
+    <br /><br />
+    <textarea name="listing[description]">
+<%= listing.description %></textarea
+    >
+    <br /><br />
+    <input name="listing[image]" value="<%= listing.image %>" type="text" />
+    <br /><br />
+    <input name="listing[price]" value="<%= listing.price %>" type="number" />
+    <br /><br />
+    <input
+      name="listing[collage]"
+      value="<%= listing.collage %>"
+      type="text"
+    />
+    <br /><br />
+    <input
+      name="listing[contact]"
+      value="<%= listing.contact %>"
+      type="number"
+    />
+    <br /><br />
+    <button>Edit</button>
+  </form>
+</body>
+</html>
+
+
+
+
+<!-- New -->
+ 
+<body>
+  <h3>Add Your Item</h3>
+  <form method="POST" action="/listings">
+    <input name="listing[title]" placeholder="enter title" type="text" />
+    <br /><br />
+    <textarea
+      name="listing[description]"
+      placeholder="enter description"
+    ></textarea>
+    <br /><br />
+    <input
+      name="listing[image]"
+      placeholder="enter image URL/Link"
+      type="text"
+    />
+    <br /><br />
+    <input name="listing[price]" placeholder="enter price" type="number" />
+    <br /><br />
+    <input name="listing[contact]" placeholder="enter contact" type="number" minlength="10" maxlength="10" />
+    <br /><br />
+    <input
+      name="listing[collage]"
+      placeholder="enter collage"
+      type="text"
+    />
+    <br /><br />
+    <button>Add</button>
+  </form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecondSpin</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <%- include("../includes/navbar.ejs") %> 
+
+    
+    <div class="container">
+        <%- include("../includes/flash.ejs") %>
+        <%- body %>  
+    </div>
+
+    <%- include("../includes/footer.ejs")%>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+<style>
+  .card {
+  border: 1px solid #ddd !important; /* Light gray border */
+  border-radius: 8px; /* Slightly rounded corners */
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow on hover */
+}
+
+</style>
+
+<body>
+  <div class="container mb-5">
+    <div class="row justify-content-center">
+      <div class="ccol-12 col-sm-6 col-md-8 col-lg-12 col-xl-4">  
+        <div class="card" >
+          <img src="<%= listing.image %>" class="card-img-top" alt="">
+          <hr>
+          <div class="card-body">
+            <h3 class="card-title text-center "><strong>Title:</strong><%= listing.title %></h3><br>
+            <h5 class="ms-2"><strong>Price:</strong>&#8377;<%= listing.price %>/-</h5>
+            <p class="card-text ms-2 "><strong>Description:</strong><%= listing.description %></p>
+        
+            <p class="ms-2"><strong>Contact:</strong> <%= listing.contact %></p>
+            <p class="ms-2"><strong>College:</strong> <%= listing.collage %></p>
+
+            <div class="d-flex justify-content-between mt-3 mb-3">
+              <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE" class="w-50 ms-2 me-2">
+                <button class="btn btn-danger  w-100">Delete</button>
+              </form>
+
+              <a href="/listings/<%= listing._id %>/edit" class="btn btn-success w-50 me-2 text-center">Edit</a>            </div>
+          </div>
+      </div>
+      <br><br>
+    </div>
+    <hr>
+    <br>
+    <div>
+      <h4>Leave a review</h4>
+      <form action="/listings/<%=listing.id%>/reviews" method="post" novalidate class="needs-validation">
+        <div>
+          <label for="rating">Rating</label>
+          <input class="mb-3" type="range" min="1" max="5" id="rating" name="review[rating]">
+        </div>
+        <div>
+          <label for="comment">Comment</label>
+          <textarea class="form-control " name="review[comment]" id="comment" cols="30" rows="3" required></textarea>
+          <div class="invalid-feedback">Please Leave your comment</div>
+        </div>
+        <button class="btn btn-success mt-3">Submit</button>
+      </form>
+    </div>
+    <% if (listing.reviews.length>0){ %>
+      <div class="row ">
+          <p><b>Ask Your Query About Product</b></p>
+      <% for(review of listing.reviews){ %>
+          <div class="card col-5 ms-3 mb-3">
+              <div class="card-body">
+                  <p class="card-text"> <%= review.comment %> </p>                
+                    
+                  </p>
+              </div>
+              <form method="post" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE" class="mb-3">
+                  <Button class="btn btn-sm btn-dark">Delete</Button></form>
+                <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>/reply">
+                  <textarea name="reply[comment]" class="form-control mb-2" placeholder="Write a reply..." required></textarea>
+                  <button type="submit" class="btn btn-sm btn-primary">Send</button>
+                </form>
+
+                 <!-- Display Replies -->
+        <% if (review.replies.length > 0) { %>
+          <div class="mt-2">
+            <strong>Replies:</strong>
+            <ul class="list-unstyled">
+              <% for (let reply of review.replies) { %>
+                <li class="border p-2 mt-1"><%= reply.comment %></li>
+              <% } %>
+            </ul>
+          </div>
+        <% } %>
+                  
+          </div>
+      <% } %>
+  </div>
+  <% } %>
+  </div>
+  </div>
+</body>
+</html> 
+
+
+
+
+
+<style>
+  /* Base styles */
+  .navbar {
+    padding: 0.25rem 0.5rem;
+  }
+  
+  .btn-search {
+    background-color: #fe424d;
+    color: #fff;
+    border-radius: 25px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .search-input {
+    border-radius: 25px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  /* Logo sizing */
+  .navbar-brand img {
+    width: 36px;
+    height: 36px;
+    margin-right: 0.5rem;
+  }
+
+  /* Search container - takes 60% width and centers */
+  .search-container {
+    width: 60%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Navbar layout - ensures all elements stay in one line */
+  .navbar-container {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 100%;
+    position: relative; /* Needed for absolute positioning of search */
+  }
+
+  /* Space for logo and toggler */
+  .navbar-sides {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    min-width: 80px; /* Ensures logo and toggler stay visible */
+  }
+
+  /* Dropdown menu */
+  .custom-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    background: white;
+    z-index: 1050;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 10px 10px;
+    padding: 15px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  /* Medium devices (tablets, 768px and up) */
+  @media (min-width: 768px) {
+    .navbar {
+      padding: 0.5rem 1rem;
+    }
+    
+    .btn-search {
+      padding: 0.4rem 1.5rem;
+      font-size: 1rem;
+    }
+    
+    .search-input {
+      padding: 0.4rem 1.5rem;
+      font-size: 1rem;
+    }
+    
+    .navbar-brand img {
+      width: 50px;
+      height: 50px;
+    }
+    
+    .custom-dropdown {
+      width: 280px;
+      right: 10px;
+      border-radius: 10px;
+    }
+    
+    .search-container {
+      width: 50%; /* Slightly wider on tablets */
+    }
+  }
+
+  /* Large devices (desktops, 992px and up) */
+  @media (min-width: 992px) {
+    .search-container {
+      width: 40%; /* Narrower on desktops */
+    }
+    .search-input {
+      padding: 0.4rem 2rem;
+    }
+  }
+</style>
+
+<nav class="navbar bg-body-light border-bottom sticky-top">
+  <div class="container-fluid navbar-container">
+    <!-- Left side - logo -->
+    <div class="navbar-sides">
+      <a class="navbar-brand p-0" href="#">
+        <img src="/images/Screenshot 2025-03-26 191836.png" alt="SecondSpin Logo">
+      </a>
+
+      <!-- Right side - toggler -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+
+    <!-- Centered search bar -->
+    <div class="search-container">
+      <form class="d-flex w-100">
+        <input class="form-control me-2 search-input" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-search" type="submit">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- Collapsible Menu -->
+    <div class="collapse navbar-collapse custom-dropdown text-center" id="navbarNavAltMarkup">
+      <div class="navbar-nav d-flex flex-column align-items-center">
+        <a class="nav-link" href="/listings">Explore</a>
+        <a class="nav-link" href="/listings/new">List your Item</a>
+      </div>
+
+      <div class="navbar-nav d-flex flex-column align-items-center">
+        <% if (typeof currUser === "undefined" || !currUser) { %>
+          <a class="nav-link active" href="/signup"><b>Sign Up</b></a>
+          <a class="nav-link" href="/login"><b>Login</b></a>
+        <% } else { %>
+          <a class="nav-link" href="/logout"><b>Logout</b></a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+<style>
+  .card {
+  border: 1px solid #ddd !important; /* Light gray border */
+  border-radius: 8px; /* Slightly rounded corners */
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow on hover */
+}</style>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listing Details</title>
+  <link rel="stylesheet" href="/path/to/bootstrap.css"> <!-- Ensure Bootstrap is included -->
+</head>
+<body>
+  <div class="container mb-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-6 col-md-8 col-lg-12 col-xl-4">  
+        <div class="card">
+          <img src="<%= listing.image %>" class="card-img-top" alt="Listing Image">
+          <hr>
+          <div class="card-body">
+            <h3 class="card-title text-center"><strong>Title:</strong> <%= listing.title %></h3>
+            <h5 class="ms-2"><strong>Price:</strong> &#8377;<%= listing.price %>/-</h5>
+            <p class="card-text ms-2"><strong>Description:</strong> <%= listing.description %></p>
+            <p class="ms-2"><strong>Contact:</strong> <%= listing.contact %></p>
+            <p class="ms-2"><strong>College:</strong> <%= listing.college %></p>
+            <div class="d-flex justify-content-between mt-3 mb-3">
+              <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE" class="w-50 ms-2 me-2">
+                <button class="btn btn-danger w-100">Delete</button>
+              </form>
+              <a href="/listings/<%= listing._id %>/edit" class="btn btn-success w-50 me-2 text-center">Edit</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <hr>
+    
+    <div class="review-section mt-4"> 
+      <h4>Ask Your Queries</h4>
+      <form action="/listings/<%= listing._id %>/reviews" method="post" class="needs-validation" novalidate>
+        <div>
+          <label for="rating">Rating</label>
+          <input class="mb-3" type="range" min="1" max="5" id="rating" name="review[rating]">
+        </div>
+        <div class="comment-box">
+          <textarea class="form-control" name="review[comment]" placeholder="Write your review..." required></textarea>
+          <div class="invalid-feedback">Please leave your comment</div>
+          <button class="btn btn-success mt-3">Submit</button>
+        </div>
+      </form>
+    </div>
+    
+    <% if (listing.reviews.length > 0) { %>
+      <div class="mt-4">
+        <h5>Queries</h5>
+        <% for (let review of listing.reviews) { %>
+          <div class="review-card mb-3 p-3 border rounded">
+            <p><strong>Query:</strong> <%= review.comment %></p>
+            
+            <!-- Delete Review Button -->
+            <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+              <button class="btn btn-sm btn-danger">Delete</button>
+            </form>
+            
+            
+            <!-- Reply Form -->
+            <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>/reply" class="mt-2">
+              <div class="comment-box">
+                <textarea name="reply[comment]" class="form-control" placeholder="Reply..." required></textarea>
+                <button type="submit" class="btn btn-sm btn-primary">Reply</button>
+              </div>
+            </form>
+            
+            <!-- Display Replies -->
+            <% if (review.replies.length > 0) { %>
+              <div class="reply-card mt-2 p-2 border rounded">
+                <strong>Replies:</strong>
+                <% for (let reply of review.replies) { %>
+                  <div class="d-flex justify-content-between border p-2 mt-1">
+                    <span><strong>Reply:</strong> <%= reply.comment %></span>
+                    
+                    <!-- Delete Reply Button -->
+                    <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>/reply/<%= reply._id %>?_method=DELETE">
+                      <button class="btn btn-sm btn-outline-danger">X</button>
+                    </form>
+                  </div>
+                <% } %>
+              </div>
+            <% } %>
+          </div>
+        <% } %>
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>

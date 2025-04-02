@@ -1,0 +1,23 @@
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Listings Available in <%= collage %></h2>
+
+    <% if (message) { %>
+        <div class="alert alert-warning text-center"><%= message %></div>
+    <% } else { %>
+        <div class="row g-3">
+            <% for (let listing of listings) { %>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="/listings/<%= listing._id %>" class="listing-link">
+                        <div class="card listing-card">
+                            <img class="card-img-top" src="<%= listing.image.url %>" alt="listing image">
+                            <div class="card-body">
+                                <h5 class="card-title ms-2"><%= listing.title %></h5>
+                                <p class="card-text ms-2">Price: &#8377;<%= Number(listing.price).toLocaleString("en-IN") %></p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            <% } %>
+        </div>
+    <% } %>
+</div>

@@ -1,0 +1,299 @@
+<style>
+  /* Base styles */
+  .navbar {
+    padding: 0.25rem 0.5rem;
+    background: rgb(0,212,255);
+    background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(68,38,126,1) 82%);
+  }
+  
+  .btn-search {
+    background-color: #fe424d;
+    color: #fff;
+    border-radius: 25px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .search-input {
+    border-radius: 25px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  /* Logo sizing */
+  .navbar-brand img {
+    width: 36px;
+    height: 36px;
+    margin-right: 0.5rem;
+  }
+
+  /* Search container - takes 60% width and centers */
+  .search-container {
+    width: 60%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Navbar layout - ensures all elements stay in one line */
+  .navbar-container {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 100%;
+    position: relative; /* Needed for absolute positioning of search */
+  }
+
+  /* Space for logo and toggler */
+  .navbar-sides {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    min-width: 80px; /* Ensures logo and toggler stay visible */
+  }
+
+  /* Dropdown menu */
+  .custom-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    background: white;
+    z-index: 1050;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 10px 10px;
+    padding: 15px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  /* Medium devices (tablets, 768px and up) */
+  @media (min-width: 768px) {
+    .navbar {
+      padding: 0.5rem 1rem;
+    }
+    
+    .btn-search {
+      padding: 0.4rem 1.5rem;
+      font-size: 1rem;
+    }
+    
+    .search-input {
+      padding: 0.4rem 1.5rem;
+      font-size: 1rem;
+    }
+    
+    .navbar-brand img {
+      width: 50px;
+      height: 50px;
+    }
+    
+    .custom-dropdown {
+      width: 280px;
+      right: 10px;
+      border-radius: 10px;
+    }
+    
+    .search-container {
+      width: 50%; /* Slightly wider on tablets */
+    }
+  }
+
+  /* Large devices (desktops, 992px and up) */
+  @media (min-width: 992px) {
+    .search-container {
+      width: 40%; /* Narrower on desktops */
+    }
+    .search-input {
+      padding: 0.4rem 2rem;
+    }
+  }
+
+ /* Navbar background and styling */
+.navbar {
+    background: rgb(0,212,255);
+    background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(68,38,126,1) 82%);
+    padding: 0.5rem 1rem;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Navbar links */
+.navbar-nav .nav-link {
+    color: #F3E8FF; /* Soft Cream */
+    font-weight: 500;
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #FB923C; /* Sunset Orange */
+}
+
+/* Search bar */
+.search-input {
+    border: 1px solid #F3E8FF;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #F3E8FF;
+    transition: background 0.3s ease;
+}
+
+.search-input::placeholder {
+    color: #C4B5FD; /* Lighter Purple */
+}
+
+.search-input:focus {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Search button - Firey Red Version */
+.btn-search {
+    background-color: #FF2D2D; /* Vibrant fire red */
+    color: white;
+    font-weight: 600;
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn-search:hover {
+    background-color: #FF5252; /* Brighter red for hover */
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Search icon inside button */
+.btn-search svg {
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.2));
+}
+
+/* Dropdown menu - Transparent Black with White Text */
+.custom-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 1050;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4);
+    border-radius: 0 0 12px 12px;
+    padding: 15px;
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white; /* Ensures all text is white by default */
+}
+
+.custom-dropdown .nav-link,
+.custom-dropdown .navbar-nav .nav-link,
+.custom-dropdown .nav-link.active,
+.custom-dropdown .nav-link:focus {
+    color: white !important; /* Force white text for all states */
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    margin: 0.3rem 0;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    font-weight: 500;
+}
+
+.custom-dropdown .nav-link:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: white !important;
+    transform: translateX(8px);
+    box-shadow: 2px 0 0 0 #FF2D2D;
+}
+
+.custom-dropdown hr {
+    border-color: rgba(255, 255, 255, 0.1);
+    margin: 0.75rem 0;
+}
+
+/* Active/bold items */
+.custom-dropdown .nav-link b,
+.custom-dropdown .nav-link.active {
+    color: white !important;
+    font-weight: 600;
+}
+
+/* Desktop view */
+@media (min-width: 768px) {
+    .custom-dropdown {
+        width: 300px;
+        right: 15px;
+        border-radius: 12px;
+        background: rgba(0, 0, 0, 0.9);
+    }
+}
+
+/* Navbar toggler (mobile) */
+.navbar-toggler {
+    border: none;
+    background-color: transparent;
+}
+
+.navbar-toggler-icon {
+    filter: invert(1); /* Makes it white */
+}
+</style>
+
+<nav class="navbar bg-body-light border-bottom sticky-top">
+  <div class="container-fluid navbar-container">
+    <!-- Left side - logo -->
+    <div class="navbar-sides">
+      <a class="navbar-brand p-0" href="#">
+        <img src="\images\SecondSpinlogo.jpg">
+      </a>
+
+      <!-- Right side - toggler -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+
+    <!-- Centered search bar -->
+    <div class="search-container">
+      <form class="d-flex w-100" action="/listings" method="GET">
+        <input class="form-control me-2 search-input" 
+       type="search" 
+       name="search" 
+       placeholder="Search listings..." 
+       value="<%= searchQuery %>" 
+       aria-label="Search">
+
+        <button class="btn btn-search" type="submit">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg>
+        </button>
+      </form>
+      
+    </div>
+    
+    <!-- Collapsible Menu -->
+<div class="collapse navbar-collapse custom-dropdown text-center" id="navbarNavAltMarkup">
+  <div class="navbar-nav d-flex flex-column align-items-center">
+    <% if (currUser) { %>  <!-- Show Profile only if user is logged in -->
+      <a class="nav-link" href="/profile"><b>Profile</b></a>
+      <hr class="w-100"> <!-- Optional divider for separation -->
+    <% } %>
+
+    <a class="nav-link" href="/listings">Explore</a>
+    <a class="nav-link" href="/listings/near">Nearby You</a>
+    <a class="nav-link" href="/listings/new">List your Item</a>
+  </div>
+
+  <div class="navbar-nav d-flex flex-column align-items-center">
+    <% if (!currUser) { %>  <!-- Check if user is not logged in -->
+      <a class="nav-link active" href="/signup"><b>Sign Up</b></a>
+      <a class="nav-link" href="/login"><b>Login</b></a>
+    <% } else { %>  <!-- If user is logged in -->
+      <a class="nav-link" href="/logout"><b>Logout</b></a>
+    <% } %>
+  </div>
+</div>
+
+  </div>
+</nav>

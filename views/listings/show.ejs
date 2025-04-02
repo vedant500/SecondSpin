@@ -1,0 +1,114 @@
+<style>
+  .card {
+    border: 1px solid #ddd !important;
+    border-radius: 8px;
+    transition: box-shadow 0.2s ease-in-out;
+  }
+  .card:hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+</style>
+
+<div class="container mb-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-6 col-md-8 col-lg-12 col-xl-4">  
+      <div class="card">
+        <% if (listing.image) { %>
+          <img src="<%= listing.image.url %>" class="card-img-top" alt="Listing Image">
+          <hr>
+        <% } %>
+        <div class="card-body">
+          <h3 class="card-title text-center"><strong>Title:</strong> <%= listing.title %></h3>
+          <% if (listing.price) { %>
+            <h5 class="ms-2"><strong>Price:</strong> &#8377;<%= listing.price %>/-</h5>
+          <% } %>
+          <% if (listing.description) { %>
+            <p class="card-text ms-2"><strong>Description:</strong> <%= listing.description %></p>
+          <% } %>
+          <% if (listing.collage) { %>
+            <p class="ms-2"><strong>College:</strong> <%= listing.collage %></p>
+          <% } %>
+          <% if (listing.contact) { %>
+            <p class="ms-2"><strong>Contact:</strong> <%= listing.contact %></p>
+          <% } %>
+          <% if (listing.owner && listing.owner.username) { %>
+            <p class="ms-2"><strong>Owner:</strong> <%= listing.owner.username %></p>
+          <% } %>
+          
+          <% if (user && listing.owner && listing.owner._id && listing.owner._id.equals(user._id)) { %>
+            <div class="d-flex justify-content-between mt-3 mb-3">
+              <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE" class="w-50 ms-2 me-2">
+                <button class="btn btn-danger w-100">Delete</button>
+              </form>
+              <a href="/listings/<%= listing._id %>/edit" class="btn btn-success w-50 me-2 text-center">Edit</a>
+            </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <hr>
+  
+  <div class="review-section mt-4"> 
+    <h4>Ask Your Queries</h4>
+    <form action="/listings/<%= listing._id %>/reviews" method="post" class="needs-validation" novalidate>
+      <div>
+        <label for="rating">Rating</label>
+        <input class="mb-3" type="range" min="1" max="5" id="rating" name="review[rating]">
+      </div>
+      <div class="comment-box">
+        <textarea class="form-control" name="review[comment]" placeholder="Write your review..." required></textarea>
+        <div class="invalid-feedback">Please leave your comment</div>
+        <button class="btn btn-success mt-3">Submit</button>
+      </div>
+    </form>
+  </div>
+  
+  <% if (listing.reviews && listing.reviews.length > 0) { %>
+    <div class="mt-4">
+        <h5>Queries</h5>
+        <% listing.reviews.forEach(function(review) { %>
+            <div class="review-card mb-3 p-3 border rounded">
+                <p><strong>Query:</strong> <%= review.comment %></p>
+                <p><em>By: <%= review.author.username %></em></p>
+                
+                <% if (user && review.author._id.equals(user._id)) { %>
+                    <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+                        <button class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                <% } %>
+
+                <!-- Reply Form -->
+                <% if (user) { %>
+                    <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>/reply" class="mt-2">
+                        <div class="comment-box">
+                            <textarea name="reply[comment]" class="form-control" placeholder="Write a reply..." required></textarea>
+                            <button type="submit" class="btn btn-sm btn-primary mt-2">Post Reply</button>
+                        </div>
+                    </form>
+                <% } %>
+
+                <!-- Replies Display -->
+                <% if (review.replies && review.replies.length > 0) { %>
+                    <div class="replies mt-3">
+                        <h6>Replies:</h6>
+                        <% review.replies.forEach(function(reply) { %>
+                            <div class="reply-card p-2 mb-2 border rounded">
+                                <p><%= reply.comment %></p>
+                                <small><em>By: <%= reply.author.username %></em></small>
+                                
+                                <% if (user && reply.author._id.equals(user._id)) { %>
+                                    <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>/replies/<%= reply._id %>?_method=DELETE">
+                                        <button class="btn btn-sm btn-outline-danger">Delete</button>
+                                    </form>
+                                <% } %>
+                            </div>
+                        <% }); %>
+                    </div>
+                <% } %>
+            </div>
+        <% }); %>
+    </div>
+<% } %>
+</div>

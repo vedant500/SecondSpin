@@ -1,0 +1,84 @@
+<body class="index">
+
+  <style>
+    #filters{
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .filter{
+      text-align: center;
+      margin-top: 2rem;
+      margin-right: 2rem;
+      opacity: 0.7;
+    }
+    .filter:hover{
+      opacity: 1;
+      cursor: pointer;
+    }
+    .filter p{
+      font-size: 0.8rem;
+    }
+    .tax-info{
+      display: none;
+    }
+    .tax-toggle{
+      border: 1px solid black;
+      border-radius:1rem ;
+      height: 3rem;
+      padding: 0.74rem;
+    }
+    .listing-card {
+  border: 1px solid #ddd!important;/* Light gray border */
+  border-radius: 8px; /* Slightly rounded corners */
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.listing-card:hover {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow on hover */
+}
+
+  </style>
+  
+   <div class="container mt-4">
+    <div class="container mt-4">
+      <% if (allListings.length === 0) { %>
+        <div class="alert alert-warning text-center">
+          No listings found for "<%= searchQuery %>"
+        </div>
+      <% } %>
+      
+
+    <div class="row g-3"> <!-- g-3 ensures spacing -->
+        <% for (let listing of allListings) { %>
+            <div class="col-6 col-md-4 col-lg-3"> <!-- 2 cards per row on mobile, 3 on medium, 4 on large -->
+                <a href="/listings/<%= listing._id %>" class="listing-link">
+                    <div class="card listing-card">
+                        <img class="card-img-top" src="<%= listing.image.url %>" alt="listing image">
+                        <div class="card-body">
+                            <h5 class="card-title ms-2">Title:<%= listing.title %></h5>
+                            <p class="card-text ms-2">Price:&#8377;<%= Number(listing.price).toLocaleString("en-IN") %></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        <% } %>
+    </div>
+</div>
+<br><br>
+
+
+
+
+<script>
+  let taxSwitch=document.getElementById("flexSwitchCheckDefault");
+  taxSwitch.addEventListener("click",()=>{
+    let taxinfo=document.getElementsByClassName("tax-info");
+    for(info of taxinfo){
+      if(info.style.display!=="inline"){
+        info.style.display="inline"
+      }else{info.style.display="none"}
+    }
+  })
+</script>
+</body> 
